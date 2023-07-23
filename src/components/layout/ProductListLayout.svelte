@@ -19,7 +19,7 @@
 
 <main class="w-full flex items-center justify-center">
 	<section
-		class="w-full min-h-[calc(100vh-60px)] items-center justify-center flex flex-wrap max-w-[1440px] gap-5"
+		class="w-full mt-[15px] min-h-[calc(100vh-60px)] items-center justify-center flex flex-wrap max-w-[1440px] gap-5"
 	>
 		{#each $productsStore as product}
 			<ProductCard {product} />

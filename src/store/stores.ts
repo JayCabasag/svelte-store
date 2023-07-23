@@ -18,10 +18,12 @@ function createCartStore() {
                 })
                 return newItems
             }
+
             const newItems = items.map((item) => {
                 if (item.id === itemId) return updatedItem
                 return item
             })
+
             return newItems
         }),
     }
