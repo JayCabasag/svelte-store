@@ -1,5 +1,7 @@
 import { writable } from "svelte/store";
 import type { Item, Product } from "./types";
+import type { loadingState } from "$lib/getAllProducts";
+import { DEFAULT_INITIAL_PRODUCT_LIMIT } from "../utils/constants";
 
 function createCartStore() {
     const { subscribe, update } = writable([] as Item[])
@@ -32,10 +34,32 @@ function createCartStore() {
 export const cartStore = createCartStore()
 
 function createProductsStore() {
-    const { subscribe, set } = writable([] as Product[])
+    const { subscribe, set, update } = writable({
+        products: [] as Product[],
+        limit: DEFAULT_INITIAL_PRODUCT_LIMIT,
+        status: 'idle'
+    })
     return {
         subscribe,
-        setProducts: (products: Product[]) => set(products)
+        setProducts: (products: Product[], limit: number, status: string) => set({ status, products, limit }),
+        updateProducts: (newProducts: Product[]) => update((data) => {
+            return {
+                ...data,
+                products: newProducts
+            }
+        }),
+        updateLimit: (limit: number) => update(data => {
+            return {
+                ...data,
+                limit
+            }
+        }),
+        updateStatus: (status: loadingState) => update((data) => {
+            return {
+                ...data,
+                status
+            }
+        })
     }
 }
 

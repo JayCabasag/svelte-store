@@ -1,0 +1,1 @@
+export const DEFAULT_INITIAL_PRODUCT_LIMIT = 10
